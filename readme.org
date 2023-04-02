@@ -1,0 +1,10 @@
+#+TITLE: Literate Emacs Configuration
+#+AUTHOR: Andreas Madsack
+#+DRAFT: true
+
+Welcome to my literate Emacs configuration.
+
+Visit [[file:literate/01-main.org][01-main.org]] to start exploring my configuration.
+
+
+adapted from https://github.com/faijdherbe/emacs-config

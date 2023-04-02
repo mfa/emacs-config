@@ -1,0 +1,29 @@
+#+TITLE: Theme and UI
+#+DRAFT: false
+#+TAGS[]: emacs config
+#+PROPERTY: header-args:emacs-lisp :comments link :results none
+
+* Theme
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dracula-theme
+      :ensure t
+      :init
+      (load-theme 'dracula t)
+      )
+#+END_SRC
+
+* Window switching
+
+default to C-c C-w 1...9
+
+#+BEGIN_SRC emacs-lisp
+  (use-package eyebrowse
+      :ensure t
+      :init
+      (eyebrowse-mode t)
+      (setq eyebrowse-wrap-around t)
+      (setq eyebrowse-new-workspace t)
+      (eyebrowse-setup-opinionated-keys)
+      )
+#+END_SRC

@@ -1,0 +1,58 @@
+#+TITLE: Main Config
+#+DRAFT: false
+#+TAGS[]: emacs config
+#+PROPERTY: header-args:emacs-lisp :comments link :results none
+
+* Main config
+
+To use this configuration add the following codeblock to your
+=~/.emacs.d/init.el=, changing the path to this configuration file
+accordingly.
+
+#+begin_src emacs-lisp :tangle init.el
+(package-initialize)
+
+(setq config--config-path "~/git/emacs-config/literate")
+
+(org-babel-load-file
+ (expand-file-name (concat (string-trim config--config-path "/") "/01-main.org")))
+#+end_src
+
+#+RESULTS:
+: Loaded /home/mfa/git/emacs-config/literate/01-main.el
+
+Alternatively, you can press =C-c C-c= on this codeblock to evaluate immediately.
+
+* Testing the config
+
+#+begin_src
+emacs -Q --eval "(setq mfa/dev-env t)" -l "~/git/emacs-config/literate/init.el"
+#+end_src
+
+* Specific Configurations
+
+#+TBLNAME: orgmode-files
+| filename       | enabled | description                             |
+|----------------+---------+-----------------------------------------|
+| 02-package.org | yes     | package repository and package manager. |
+| 03-base.org    | yes     | base config                             |
+| 20-theme.org   | yes     | theme and ui config                     |
+|                |         |                                         |
+
+The following script will use the table above as source to load all
+other configurations in order - if enabled.
+
+#+NAME: load-configs
+#+begin_src emacs-lisp :var files=orgmode-files
+(dolist (record files)
+  (let* ((filename (car record))
+         (enabled (cadr record))
+         (dir (or config--config-path ""))
+         (path (expand-file-name (concat (string-trim dir "/")
+                                         "/" filename))))
+    (if (and (string= "yes" enabled)
+             (file-readable-p path))
+        (progn
+          (message "load: %s" filename)
+          (org-babel-load-file path)))))
+#+end_src

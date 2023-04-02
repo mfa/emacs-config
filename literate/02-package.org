@@ -1,0 +1,57 @@
+#+TITLE: Package Config
+#+DRAFT: false
+#+TAGS[]: emacs config
+#+PROPERTY: header-args:emacs-lisp :comments link :results none
+
+* Package config
+
+activate melpa
+
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives
+               '("nongnu" . "https://elpa.nongnu.org/nongnu/")
+   t)
+  (add-to-list 'package-archives
+               '("gnu" . "http://elpa.gnu.org/packages/")
+   t)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.org/packages/")
+   t)
+#+END_SRC
+
+refresh packages
+
+#+BEGIN_SRC emacs-lisp
+(unless package-archive-contents
+  (package-refresh-contents))
+(eval-and-compile
+  (setq use-package-always-ensure t
+        use-package-expand-minimally t))
+#+END_SRC
+
+
+* Install magit
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :defer t
+    :init
+    (global-set-key [(f8)] 'magit-status)
+  )
+#+END_SRC
+
+
+* Theme
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dracula-theme
+      :ensure t
+      :init
+      (load-theme 'dracula t)
+      )
+#+END_SRC
+
+
+

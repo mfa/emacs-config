@@ -1,0 +1,147 @@
+#+TITLE: Base Config
+#+DRAFT: false
+#+TAGS[]: emacs config
+#+PROPERTY: header-args:emacs-lisp :comments link :results none
+
+* Base config
+
+#+BEGIN_SRC emacs-lisp
+  ;; Encoding should be utf-8
+  (prefer-coding-system 'utf-8)
+
+  ;; Always end a file with a newline
+  (setq require-final-newline t)
+
+  ;; Stop at the end of the file, not just add lines
+  (setq next-line-add-newlines nil)
+
+  ;; calendar mode
+  (setq calendar-week-start-day 1)
+
+  ;; disable locking symlink files:
+  ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Interlocking.html
+  (setq create-lockfiles nil)
+
+  ;; pickup external file changes (i.e. git)
+  (global-auto-revert-mode 1)
+  ;; empty scratch message
+  (setq initial-scratch-message "")
+
+  ;; dont beep outloud, ever!
+  (setq ring-bell-function
+      (lambda () (message "*beep*")))
+
+  ;; no toolbar
+  (tool-bar-mode -1)
+  ;; no menubar
+  (menu-bar-mode -1)
+  ;; no scrollbar
+  (scroll-bar-mode -1)
+
+  ;; y/n is enough
+  (fset 'yes-or-no-p 'y-or-n-p)
+
+  ;; hightlight current line
+  (global-hl-line-mode 1)
+
+  ;; disable startup message
+  (setq inhibit-startup-screen t)
+  (setq inhibit-startup-echo-area-message t)
+  (setq inhibit-startup-message t)
+
+  ;; truncate long lines
+  (global-set-key (kbd "C-<f12>") 'toggle-truncate-lines)
+
+#+END_SRC
+
+
+* Clipboard
+
+#+BEGIN_SRC emacs-lisp
+  (setq select-enable-clipboard t)
+  ;; http://stackoverflow.com/questions/3216081/integrate-emacs-copy-paste-with-system-copy-paste
+  ;; (setq x-select-enable-clipboard t)
+  ;; (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+#+END_SRC
+
+
+* Backup
+
+#+BEGIN_SRC emacs-lisp
+  ;; delete autosaves
+  (setq delete-auto-save-files t)
+  ;; stop creating those backup~ files
+  (setq make-backup-files nil)
+  ;; stop creating those #auto save# files
+  (setq auto-save-default nil)
+#+END_SRC
+
+
+* Org mode changes
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-startup-indented t)
+  ;; always show all
+  (setq org-startup-folded "showall")
+  ;; use google chrome beta to open links
+  (setq browse-url-browser-function 'browse-url-generic
+	browse-url-generic-program "google-chrome-beta")
+  ;; where I store my org files
+  (setq org-agenda-files '("~/git/metaMFA"))
+  ;; disable indentation
+  (setq org-adapt-indentation nil)
+  ;; disable automatic indent on org-return
+  (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+#+END_SRC
+
+
+* legder
+
+#+BEGIN_SRC emacs-lisp
+  ;; use the only valid date format
+  (setq ledger-use-iso-dates t)
+#+END_SRC
+
+
+* Whitespace
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default show-trailing-whitespace t)
+
+  ;; toggle whitespace-mode
+  (global-set-key [(f7)] '(lambda()(interactive)
+                            (whitespace-mode 'toggle)))
+#+END_SRC
+
+FIXME: remove too many spaces on save, but don't when in markdown-mode
+
+
+* Uniquify
+
+#+BEGIN_SRC emacs-lisp
+  (require 'uniquify)
+
+  (setq uniquify-buffer-name-style 'reverse)
+  (setq uniquify-separator " • ")
+  (setq uniquify-after-kill-buffer-p t)
+  (setq uniquify-ignore-buffers-re "^\\*")
+#+END_SRC
+
+
+* Recent files
+
+#+BEGIN_SRC emacs-lisp
+  (require 'recentf)
+  (setq recentf-max-saved-items 200
+	recentf-max-menu-items 15)
+  (recentf-mode)
+#+END_SRC
+
+
+* parentesis
+
+#+BEGIN_SRC emacs-lisp
+;; parentesis highlighting
+(setq paren-face 'bold)
+(setq paren-sexp-mode t)
+#+END_SRC
