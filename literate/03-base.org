@@ -85,21 +85,65 @@
   (setq org-startup-folded "showall")
   ;; use google chrome beta to open links
   (setq browse-url-browser-function 'browse-url-generic
-	browse-url-generic-program "google-chrome-beta")
+        browse-url-generic-program "google-chrome-beta")
   ;; where I store my org files
   (setq org-agenda-files '("~/git/metaMFA"))
   ;; disable indentation
   (setq org-adapt-indentation nil)
   ;; disable automatic indent on org-return
   (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+
+  ;; Various preferences
+  (setq org-edit-timestamp-down-means-later t
+        org-hide-emphasis-markers t
+        org-catch-invisible-edits 'show
+        org-export-coding-system 'utf-8
+        org-fast-tag-selection-single-key 'expert
+        org-html-validation-link nil
+        org-export-kill-product-buffer-when-displayed t
+        org-tags-column 80)
+
+   ;; To-do settings
+   (setq org-todo-keywords
+         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")))
+         org-todo-repeat-to-state "NEXT")
+
+   ;; activate babel languages
+   (with-eval-after-load 'org
+     (org-babel-do-load-languages
+      'org-babel-load-languages
+      (seq-filter
+       (lambda (pair)
+         (locate-library (concat "ob-" (symbol-name (car pair)))))
+       '((ditaa . t)
+         (dot . t)
+         (emacs-lisp . t)
+         (gnuplot . t)
+         (latex . t)
+         (ledger . t)
+         (python . t)
+         (shell . t)
+         (sql . t)
+         (sqlite . t)))))
 #+END_SRC
 
 
 * legder
 
 #+BEGIN_SRC emacs-lisp
-  ;; use the only valid date format
-  (setq ledger-use-iso-dates t)
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+  (use-package ledger-mode
+    :ensure t
+    :init
+    (setq ledger-mode-should-check-version nil
+          ledger-report-links-in-register nil
+          ledger-use-iso-dates t
+          ledger-binary-path "hledger")
+    )
+  (use-package flycheck-ledger
+    :ensure t)
 #+END_SRC
 
 
