@@ -1,0 +1,27 @@
+#+TITLE: development
+#+DRAFT: false
+#+TAGS[]: emacs config
+#+PROPERTY: header-args:emacs-lisp :comments link :results none
+
+* Javascript
+
+https://github.com/mooz/js2-mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package js2-mode
+    :init
+    (setq indent-tabs-mode t)
+    (setq tab-width 8)
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+    )
+#+END_SRC
+
+
+* markdown
+
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
+#+END_SRC

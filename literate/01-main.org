@@ -32,12 +32,13 @@ emacs -Q --eval "(setq mfa/dev-env t)" -l "~/git/emacs-config/literate/init.el"
 * Specific Configurations
 
 #+TBLNAME: orgmode-files
-| filename       | enabled | description                             |
-|----------------+---------+-----------------------------------------|
-| 02-package.org | yes     | package repository and package manager. |
-| 03-base.org    | yes     | base config                             |
-| 20-theme.org   | yes     | theme and ui config                     |
-|                |         |                                         |
+| filename           | enabled | description                             |
+|--------------------+---------+-----------------------------------------|
+| 02-package.org     | yes     | package repository and package manager. |
+| 03-base.org        | yes     | base config                             |
+| 10-completion.org  | yes     | (auto-)completing                       |
+| 20-theme.org       | yes     | theme and ui config                     |
+| 30-development.org | yes     | programming environments                |
 
 The following script will use the table above as source to load all
 other configurations in order - if enabled.

@@ -43,15 +43,4 @@ refresh packages
 #+END_SRC
 
 
-* Theme
-
-#+BEGIN_SRC emacs-lisp
-  (use-package dracula-theme
-      :ensure t
-      :init
-      (load-theme 'dracula t)
-      )
-#+END_SRC
-
-
 
