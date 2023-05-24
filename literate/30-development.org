@@ -25,3 +25,26 @@ https://github.com/mooz/js2-mode
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown"))
 #+END_SRC
+
+
+* yaml
+
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode
+  :ensure t
+  :mode "\\.yml\\'")
+#+END_SRC
+
+
+* rust
+
+more https://robert.kra.hn/posts/rust-emacs-setup/
+
+#+BEGIN_SRC emacs-lisp
+(use-package rustic
+  :ensure
+  :config
+  ;; comment to disable rustfmt on save
+  (setq rustic-format-on-save t)
+)
+#+END_SRC

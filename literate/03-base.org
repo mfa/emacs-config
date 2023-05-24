@@ -8,6 +8,9 @@
 #+BEGIN_SRC emacs-lisp
   ;; Encoding should be utf-8
   (prefer-coding-system 'utf-8)
+  (set-language-environment "UTF-8")
+  (set-default-coding-systems 'utf-8)
+  (set-keyboard-coding-system 'utf-8-unix)
 
   ;; Always end a file with a newline
   (setq require-final-newline t)
@@ -127,6 +130,12 @@
          (sqlite . t)))))
 #+END_SRC
 
+* gnuplot
+
+#+BEGIN_SRC emacs-lisp
+(use-package gnuplot
+  :ensure t)
+#+END_SRC
 
 * legder
 
@@ -193,4 +202,12 @@ FIXME: remove too many spaces on save, but don't when in markdown-mode
 ;; parentesis highlighting
 (setq paren-face 'bold)
 (setq paren-sexp-mode t)
+#+END_SRC
+
+
+* dired
+
+#+BEGIN_SRC emacs-lisp
+;; set copy/move target to other window
+(setq dired-dwim-target t)
 #+END_SRC
