@@ -2,7 +2,7 @@
 #+AUTHOR: Andreas Madsack
 #+DRAFT: true
 
-Welcome to my literate Emacs configuration.
+Welcome to my literate Emacs 29+ configuration.
 
 Visit [[file:literate/01-main.org][01-main.org]] to start exploring my configuration.
 
