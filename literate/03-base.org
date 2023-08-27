@@ -55,6 +55,8 @@
   ;; truncate long lines
   (global-set-key (kbd "C-<f12>") 'toggle-truncate-lines)
 
+  ;; set M-i to imenu
+  (global-set-key (kbd "M-i") 'imenu)
 #+END_SRC
 
 
@@ -128,6 +130,10 @@
          (shell . t)
          (sql . t)
          (sqlite . t)))))
+
+  (setq org-todo-keyword-faces
+        '(("TODO" . (:foreground "Orange" :weight bold))
+          ("DONE" . (:foreground "Green" :weight bold))))
 #+END_SRC
 
 * gnuplot
