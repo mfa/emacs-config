@@ -217,3 +217,20 @@ FIXME: remove too many spaces on save, but don't when in markdown-mode
 ;; set copy/move target to other window
 (setq dired-dwim-target t)
 #+END_SRC
+
+
+* scratch
+
+Don't remove scratch, but delete contents.
+source: https://www.emacswiki.org/emacs/RecreateScratchBuffer
+
+#+BEGIN_SRC emacs-lisp
+(defun unkillable-scratch-buffer ()
+	(if (equal (buffer-name (current-buffer)) "*scratch*")
+	    (progn
+	      (delete-region (point-min) (point-max))
+	      nil)
+	  t))
+
+(add-hook 'kill-buffer-query-functions 'unkillable-scratch-buffer)
+#+END_SRC
