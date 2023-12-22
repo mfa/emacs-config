@@ -76,3 +76,21 @@ more https://robert.kra.hn/posts/rust-emacs-setup/
   ;;     )))
 #+END_SRC
 
+
+* markdown
+
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
+#+END_SRC
+
+
+* eglot
+
+needs language servers, on ArchLinux I use:
+
+- ~pyright~ for python
+
+and start the mode with ~M-x eglot~
