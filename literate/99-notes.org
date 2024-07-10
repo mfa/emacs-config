@@ -1,0 +1,28 @@
+#+TITLE: notes
+#+DRAFT: false
+#+TAGS[]: emacs config
+#+PROPERTY: header-args:emacs-lisp :comments link :results none
+
+* Package update
+
+to update the packages now:
+- M-x list-packages
+- mark all updateable packages: U
+- update: x
+
+
+* Rst-mode
+
+- C-x TAB
+
+** not rst-mode
+
+Indent marked region by two spaces (for restructuredText sourcecode/verbatim):
+
+- Mark region
+- indent by one to the right: M-x indent-rigidly-right
+- Repeat previous command: C-x z
+
+* line-wrap
+
+- M-x toggle-truncate-lines
