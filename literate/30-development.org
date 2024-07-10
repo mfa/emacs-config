@@ -94,3 +94,11 @@ needs language servers, on ArchLinux I use:
 - ~pyright~ for python
 
 and start the mode with ~M-x eglot~
+
+* csv
+
+#+BEGIN_SRC emacs-lisp
+(use-package csv-mode
+  :ensure t
+  :mode "\\.csv\\'")
+#+END_SRC
