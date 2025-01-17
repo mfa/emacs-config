@@ -39,6 +39,7 @@ emacs -Q --eval "(setq mfa/dev-env t)" -l "~/git/emacs-config/literate/init.el"
 | 10-completion.org  | yes     | (auto-)completing                       |
 | 20-theme.org       | yes     | theme and ui config                     |
 | 30-development.org | yes     | programming environments                |
+| 40-llms.org        | yes     | llms, i.e. ChatGPT                      |
 
 The following script will use the table above as source to load all
 other configurations in order - if enabled.

@@ -1,0 +1,20 @@
+#+TITLE: LLMs
+#+DRAFT: false
+#+TAGS[]: emacs config
+#+PROPERTY: header-args:emacs-lisp :comments link :results none
+
+* CoPilot
+
+#+BEGIN_SRC emacs-lisp
+; may need update of package list to get an installable version
+; (package-refresh-contents)
+; install package
+(use-package gptel
+  :bind (("C-c g" . gptel))  ; bind start of chat
+ )
+#+END_SRC
+
+I moved the secret to ~/.authinfo.gpg as described in the [[https://github.com/karthink/gptel?tab=readme-ov-file#chatgpt][readme]].
+(For .gpg see: https://www.emacswiki.org/emacs/GnusAuthinfo)
+To send the current buffer to chatgpt press: C-c RET
+
