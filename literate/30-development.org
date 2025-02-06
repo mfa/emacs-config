@@ -14,8 +14,13 @@ https://github.com/mooz/js2-mode
     (setq tab-width 8)
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     )
-#+END_SRC
 
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(javascript-jshint)))
+(flycheck-add-mode 'javascript-eslint 'js2-mode)
+(flycheck-add-mode 'javascript-eslint 'typesript-mode)
+#+END_SRC
 
 * markdown
 
@@ -25,7 +30,6 @@ https://github.com/mooz/js2-mode
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown"))
 #+END_SRC
-
 
 * yaml
 
@@ -72,29 +76,28 @@ more https://robert.kra.hn/posts/rust-emacs-setup/
     (python "https://github.com/tree-sitter/tree-sitter-python")
     (rust "https://github.com/tree-sitter/tree-sitter-rust")
     ;; (toml "https://github.com/tree-sitter/tree-sitter-toml")
+    (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
     ;; (ts . ("https://github.com/tree-sitter/tree-sitter-typescript"))
     ;; (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-    )))
-#+END_SRC
-
-
-* markdown
-
-#+BEGIN_SRC emacs-lisp
-(use-package markdown-mode
+    ))
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+(use-package tree-sitter-langs
   :ensure t
-  :mode ("README\\.md\\'" . gfm-mode)
-  :init (setq markdown-command "multimarkdown"))
+  :after tree-sitter)
 #+END_SRC
 
 
 * eglot
 
 needs language servers, on ArchLinux I use:
-
 - ~pyright~ for python
-
 and start the mode with ~M-x eglot~
+
+for js needs: yay -S typescript-language-server
+
+found automatically so not needed?
+(add-to-list 'eglot-server-programs
+             '((typescript-mode) "typescript-language-server" "--stdio"))
 
 * csv
 
